@@ -1,3 +1,6 @@
+"use client";
+
+// Import necessary modules and components
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -23,7 +26,7 @@ import { useState } from "react";
 import { Textarea } from "./ui/textarea";
 import SOUND_MODELS, { SoundModel } from "@/lib/constants";
 
-// Define the validation schema using zod
+// Define the validation schema for the form fields
 const FormSchema = z.object({
   soundModel: z.string({
     required_error: "Please select a Hugging Face sound model to use.",
@@ -33,50 +36,50 @@ const FormSchema = z.object({
   }),
 });
 
-// Props interface for the GenerateSoundForm component
+// Define the props interface for the GenerateSoundForm component
 interface GenerateSoundFormProps {
   handleGetAudio: (data: CreateSoundRequest) => void;
 }
 
-// The main component for generating sound using the specified form
+// Main component function
 export function GenerateSoundForm({ handleGetAudio }: GenerateSoundFormProps) {
-  // State to manage form submission status
+  // State for tracking form submission status
   const [formSubmitting, setFormSubmitting] = useState<boolean>(false);
 
-  // Initialize the react-hook-form with the zod resolver
+  // Initialize the react-hook-form with the validation schema
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  // Form submission handler
+  // Function to handle form submission
   function onSubmit(data: z.infer<typeof FormSchema>) {
     setFormSubmitting(true);
-
-    // Create a sound request object using the form data
+    
+    // Prepare the sound request object
     const soundRequest: CreateSoundRequest = {
       modelUrl: data.soundModel,
       text: data.text,
     };
-
-    // Call the provided handler to get audio using the sound request
+    
+    // Call the provided handler function with the sound request
     handleGetAudio(soundRequest);
-
+    
     setFormSubmitting(false);
   }
 
   return (
     <div className="ml-8 mr-8">
-      {/* Render the form */}
+      {/* Form component that uses react-hook-form */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Sound Model Field */}
+          {/* Form field for selecting the sound model */}
           <FormField
             control={form.control}
             name="soundModel"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Sound Model</FormLabel>
-                {/* Dropdown for selecting sound models */}
+                {/* Select component for choosing a sound model */}
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -84,22 +87,16 @@ export function GenerateSoundForm({ handleGetAudio }: GenerateSoundFormProps) {
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a sound model" />
+                      <SelectValue placeholder="Select a verified email to display" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectContent>
-                      {/* Loop through the available sound models from the constants file */}
-                      {SOUND_MODELS.map((model: SoundModel, index: number) => (
-                        // Create a selectable option for each sound model
-                        <SelectItem
-                          key={`${model.name}-${index}`}
-                          value={model.url}
-                        >
-                          {model.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
+                    {/* Map through available sound models */}
+                    {SOUND_MODELS.map((model: SoundModel, index: number) => (
+                      <SelectItem key={`${model.name}-${index}`} value={model.url}>
+                        {model.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormDescription>
@@ -109,16 +106,15 @@ export function GenerateSoundForm({ handleGetAudio }: GenerateSoundFormProps) {
               </FormItem>
             )}
           />
-
-          {/* Text Field */}
+          {/* Form field for entering the text */}
           <FormField
             control={form.control}
             name="text"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Text</FormLabel>
-                {/* Text area for entering the input text */}
                 <FormControl>
+                  {/* Textarea component for entering text */}
                   <Textarea
                     disabled={formSubmitting}
                     rows={6}
@@ -133,8 +129,7 @@ export function GenerateSoundForm({ handleGetAudio }: GenerateSoundFormProps) {
               </FormItem>
             )}
           />
-
-          {/* Submit Button */}
+          {/* Submit button */}
           <Button type="submit" disabled={formSubmitting}>
             Submit
           </Button>

@@ -18,6 +18,11 @@ export async function POST(request: Request): Promise<Response> {
     throw new Error("Missing 'input' field in the request body");
   }
 
+  // Check if the 'input' field is provided in the request body
+  if (!process.env.HUGGING_FACE_TOKEN) {
+    throw new Error("Missing 'Hugging Face Access Token'");
+  }
+
   // Extract the 'modelUrl' and 'input' from the request body
   const modelUrl = requestBody.modelUrl;
   const input = requestBody.input;

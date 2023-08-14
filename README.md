@@ -8,8 +8,12 @@ This project showcases how to leverage pre-trained hugging face models along wit
 
 
 ## Architecture 
-![image](https://drive.google.com/file/d/1tZYKf4Y6QqD9-FSUVq69kqXIGBxUA8PN/view?usp=sharing)
+![image](https://tyhgectxutilszaayoua.supabase.co/storage/v1/object/public/misc/text-to-speech-model.png?t=2023-08-14T02%3A52%3A52.637Z)
 
+
+
+## Notes
+This application relies heavily on the stability of the Hugging Face Inference API models. Please note that occasional random errors may occur.
 
 ## How to Run the Project
 
@@ -31,6 +35,10 @@ This project showcases how to leverage pre-trained hugging face models along wit
 3. Install dependencies:
    ```sh
    npm install
+   ```
+4. Hugging Face Access Token added to your `.env.local` file:
+   ```sh
+   Hugging face tokens can be created in the hugging face settings portal
    ```
 
 ### Running the Application
