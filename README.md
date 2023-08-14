@@ -6,6 +6,11 @@ Welcome to the **Text to Speech Sound Generation** project built using Next.js! 
 
 This project showcases how to leverage pre-trained hugging face models along with the Hugging Face inference API to convert input text into synthesized speech. The user interface provides a selection of sound models to choose from and an input field to enter the desired text. Once submitted, the application fetches the generated audio from the model's API and presents it in an audio player.
 
+
+## Architecture 
+![image](https://drive.google.com/file/d/1tZYKf4Y6QqD9-FSUVq69kqXIGBxUA8PN/view?usp=sharing)
+
+
 ## How to Run the Project
 
 ### Prerequisites
@@ -17,7 +22,7 @@ This project showcases how to leverage pre-trained hugging face models along wit
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/your-nextjs-project.git
+   git clone https://github.com/sambowenhughes/your-nextjs-project.git
    ```
 2. Navigate to the project directory:
    ```sh
@@ -67,5 +72,3 @@ Contributions are welcome! To contribute, follow these steps:
 
 This project is licensed under the [MIT License](LICENSE).
 ```
-
-Make sure to replace placeholders like "your-username" and URLs with actual values from your project. Additionally, adapt the "Usage" section to include any specific instructions necessary for your application's functionality.
