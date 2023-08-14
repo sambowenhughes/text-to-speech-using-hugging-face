@@ -1,5 +1,5 @@
 {
-  "name": "video-1-hugging-face-nextjs",
+  "name": "text-to-speech-using-hugging-face",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
+    "@huggingface/inference": "^2.6.1",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^1.2.2",
     "@radix-ui/react-slot": "^1.0.2",
